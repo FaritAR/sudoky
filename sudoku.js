@@ -8,6 +8,7 @@ function solve(boardString) {
     const arr = boardString.split('');
     let result = [];
 
+
     for (let i = 0; i < arr.length; i++) {
       const breakdown = arr.splice(0, 9);
       result.push(breakdown);
@@ -28,6 +29,7 @@ function solve(boardString) {
     }
     return 0;
   }
+
 }
 
 /**
