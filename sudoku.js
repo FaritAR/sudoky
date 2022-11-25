@@ -7,13 +7,15 @@
   function getArr(boardString) {
     const arr = boardString.split('');
     let result = [];
-  
+
+
     for (let i = 0; i < arr.length; i++) {
       const breakdown = arr.splice(0, 9);
       result.push(breakdown);
-    };
+    }
 
     return result;
+
   };
 
   const board = getArr(boardString);
@@ -28,6 +30,7 @@
     }
     return 0;
   }
+
   
   function findNum(cell, table) {
     if (findEmptyCell(board) === 0) {
@@ -87,6 +90,7 @@
 
   findNum(findEmptyCell(board), board);
   return board;
+
 }
 
 /**
@@ -95,9 +99,11 @@
  */
 function isSolved(board) {
   let res = 0;
+
   board.map(el => {
     res += el.reduce((acc, num) => Number(acc) + Number(num), 0) 
   })
+
   return res === 405;
 }
 
