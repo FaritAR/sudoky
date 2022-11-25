@@ -34,7 +34,13 @@ function solve(boardString) {
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
-function isSolved(board) {}
+function isSolved(board) {
+  let res = 0;
+  board.map((el) => {
+    res += el.reduce((acc, num) => Number(acc) + Number(num), 0);
+  });
+  return res === 405;
+}
 
 /**
  * Принимает игровое поле в том формате, в котором его вернули из функции solve.
