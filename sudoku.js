@@ -19,8 +19,29 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
+ function prettyBoard(sudoku) {
+  let xx = [];
+  for (let j = 0; j < sudoku.length; j++) {
+      if (j % 3 === 0) {
+          xx.push( '\n');
+      }
+      for (let i = 0; i < sudoku[j].length; i++) {
+          if (i % 3 === 2) {
+              if (i % 9 === 8 ) {
+                  let res = sudoku[j][i] + '\n';
+                  xx.push(res)
+                  xx.push();
+              } else {
+                  let res = sudoku[j][i] + '     ';
+                  xx.push(res);
+              }
+          } else {
+              let res = sudoku[j][i] + '  ';
+              xx.push(res);
+          }
+      }
+  }
+  console.log(xx.join(''));
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
