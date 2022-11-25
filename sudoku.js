@@ -7,14 +7,29 @@ function solve(boardString) {
   function getArr(boardString) {
     const arr = boardString.split('');
     let result = [];
-  
+
+
     for (let i = 0; i < arr.length; i++) {
       const breakdown = arr.splice(0, 9);
       result.push(breakdown);
-    };
+    }
 
     return result;
-  };
+  }
+
+  const board = getArr(boardString);
+
+  function findEmptyCell(board) {
+    for (let r = 0; r < board.length; r++) {
+      for (let c = 0; c < board.length; c++) {
+        if (board[r][c] === '-') {
+          return [r, c];
+        }
+      }
+    }
+    return 0;
+  }
+
 }
 
 /**
@@ -22,7 +37,11 @@ function solve(boardString) {
  * Возвращает булевое значение — решено это игровое поле или нет.
  */
 function isSolved(board) {
-
+  let res = 0;
+  board.map((el) => {
+    res += el.reduce((acc, num) => Number(acc) + Number(num), 0);
+  });
+  return res === 405;
 }
 
 /**
@@ -30,8 +49,8 @@ function isSolved(board) {
  * Возвращает строку с игровым полем для последующего вывода в консоль.
  * Подумай, как симпатичнее сформировать эту строку.
  */
-function prettyBoard(board) {
-
+function prettyBoard(sudoku) {
+  console.table(sudoku);
 }
 
 // Экспортировать функции для использования в другом файле (например, readAndSolve.js).
