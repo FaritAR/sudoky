@@ -49,7 +49,30 @@ function format1(puzzle1) {
   // Получить желаемый судоку по индексу и вывести его в консоль.
   const puzzle = puzzles[puzzleNumber - 1];
   console.log(`Решаем судоку №${puzzleNumber}:`);
-  console.log(puzzle, '\n');
+  function format(puzzle) {
+    const s = puzzle.length;
+    const chars = puzzle.split('');
+    const strWithSpaces = chars.reduceRight((acc, char, i) => {
+        const spaceOrNothing = ((((s - i) % 3) === 0) ? ' ' : '');
+        return (spaceOrNothing + char + acc);
+    }, '');
+
+    return ((strWithSpaces[0] === ' ') ? strWithSpaces.slice(1) : strWithSpaces);
+}
+const puzzle1 = format(puzzle)
+
+function format1(puzzle1) {
+  const s = puzzle1.length;
+  const chars = puzzle1.split('');
+  const strWithSpaces = chars.reduceRight((acc, char, i) => {
+      const spaceOrNothing = ((((s - i) % 12) === 0) ? '\n' : ' ');
+      return (spaceOrNothing + char + acc);
+  }, '');
+
+  return ((strWithSpaces[0] === ' ') ? strWithSpaces.slice(1) : strWithSpaces);
+}
+
+  console.log(format1(puzzle1), '\n');
 
   // Использовать функцию solve из файла sudoku.js для решения судоку.
   const solvedPuzzle = sudoku.solve(puzzle);
@@ -65,7 +88,7 @@ function format1(puzzle1) {
 
   // Использовать функцию prettyBoard из файла sudoku.js для форматирования
   // игрового поля в строку в желаемом формате.
-  console.log(sudoku.prettyBoard(solvedPuzzle), '\n');
+  sudoku.prettyBoard(solvedPuzzle);
 }
 
 module.exports = readAndSolve;
